@@ -17,8 +17,8 @@ import txthings.resource as resource
 import rpi
 
 ######################## CONFIG ########################
-WEBSERVER_IP = "127.0.0.1"
-WEBSERVER_PORT = coap.COAP_PORT
+WEBSERVER_IP = "178.128.105.139"
+WEBSERVER_PORT = 35684
 
 POST_INTERVAL = 1.0 # in seconds
 
@@ -39,7 +39,7 @@ class UnsafeAgent:
         request = coap.Message(code=coap.POST, payload=payload)
         request.opt.uri_path = ("light", )
         request.opt.content_format = coap.media_types_rev['text/plain']
-        request.remote = (WEBSERVER_IP, coap.COAP_PORT)
+        request.remote = (WEBSERVER_IP, WEBSERVER_PORT)
 
         d = protocol.request(request)
         d.addCallback(self.printResponse)
