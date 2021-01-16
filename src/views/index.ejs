@@ -8,23 +8,26 @@
   <body class="bg-secondary">
     <div class="container">
         <div class="mx-auto mt-5 p-4 bg-light border-prompt rounded">
-            <h1 class="mb-3">COAP log</h1>
+            <h1 class="mb-3">Project Dynalite Backend API</h1>
+            <h5>An Internet-of-Things application which performs dynamic visualisation of room occupancy.</h5>
+            <a class="btn btn-primary my-3 mr-3" href="https://www.evantay.com/tech/dynalite-api/occupancy" role="button">JSON API</a>
+            <a class="btn btn-success my-3" href="https://github.com/DigiPie/dynalite" role="button">Github Repo</a>
             <div class="mx-auto table-responsive">
                 <table class="mx-auto table table-striped table-hover w-100">
                     <caption>Received COAP messages</caption>
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Type</th>
-                            <th scope="col">ID</th>
-                            <th style="max-width: 10%" scope="col">Payload</th>
+                            <th scope="col">Room Id</th>
+                            <th scope="col">Time</th>
+                            <th style="max-width: 10%" scope="col">isOccupied</th>
                         </tr>
                     </thead>
                     <% for(var i = 0; i < data.length; i++) { %>
                         <tr>
-                            <td><%= data[i].type %></td>
-                            <td><%= data[i].id %></td>
+                            <td><%= data[i].rpiId %></td>
+                            <td><%= data[i].timestamp %></td>
                             <td>
-                                <%= JSON.stringify(data[i].payload) %>
+                                <%= data[i].isOccupied %>
                             </td>
                         </tr>
                     <% } %>

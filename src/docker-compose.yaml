@@ -2,6 +2,7 @@
 version: "2"
 services:
     dynalite_backend:
+        container_name: dyna_b
         build: .
         depends_on:
             - dynalite_psql
@@ -9,7 +10,7 @@ services:
             DATABASE_URL: ${DATABASE_URL}
             ALGORITHM: ${ALGORITHM}
             KEY: ${KEY}
-            NODE_ENV: development
+            NODE_ENV: ${NODE_ENV}
             HOST: "0.0.0.0"
             PORT: 8080
         ports:
@@ -21,6 +22,7 @@ services:
             - /app/node_modules
 
     dynalite_psql:
+        container_name: dyna_p
         image: postgres:10.4
         ports:
             - "35432:5432"
@@ -28,5 +30,3 @@ services:
             POSTGRES_USER: ${DB_USER}
             POSTGRES_PASSWORD: ${DB_PW}
             POSTGRES_DB: ${DB_NAME}
-        volumes:
-            - ../setup.sql:/docker-entrypoint-initdb.d/init.sql
